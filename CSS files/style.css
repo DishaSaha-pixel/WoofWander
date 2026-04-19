@@ -1,0 +1,16 @@
+body{
+	background: black;
+	
+}
+#canvas1 {
+	border: 5px solid white;
+	position: absolute;
+	top: 50%;
+	left: 50%;	
+	transform: translate(-50%,-50%);
+	width: 1475px;
+	height: 727px;
+}
+#playerImage,#backgroundImage{
+	display:none;
+}

@@ -1,0 +1,12 @@
+#canvas1{
+    position:absolute;
+    border:3px solid black;
+    transform: translate(-50%, -50%);
+    top:50%;
+    left: 50%;
+    max-width: 100%;
+    max-height: 100%;
+}
+#player,#fire,#layer1,#layer2,#dizzy_state,#enemy_bear1,#enemy_bear2,#layer3,#layer4,#layer5,#flag,#wrong_spark,#enemy_fly,#enemy_bear,#bearlives,#t1,#t2,#t3,#t4,#t5,#t6,#t7,#t8,#broken,#broken1,#broken2,#hearts,#bone,#spark,#tunecount,#TC,#collisionAnimation,#layer6,#layer7,#enemy_spider_big{
+    display: none;
+}

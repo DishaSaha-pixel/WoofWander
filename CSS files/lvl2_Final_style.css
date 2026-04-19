@@ -1,0 +1,14 @@
+
+
+#canvas1{
+    position:absolute;
+    border:3px solid black;
+    transform: translate(-50%, -50%);
+    top:50%;
+    left: 50%;
+    max-width: 100%;
+    max-height: 100%;
+}
+#player,#layer1,#layer2,#layer3,#layer4,#layer5,#layer6, #enemy2,#enemy1,#enemy3,#enemy4,#t1,#t2,#t3,#t4,#t5,#t6,#broken,#broken1,#broken2,#hearts,#magic_berry,#wrong_spark,#spark,#tunecount,#TC,#collisionAnimation,#flag{
+    display: none;
+}
