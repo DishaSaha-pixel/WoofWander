@@ -1,3 +1,4 @@
 # WoofWander
 A heartwarming side-scrolling memory game built using JavaScript, where players guide Buddy, a loyal dog, on a journey to find his lost owner, Mr. Thompson. Set across beautifully themed levels (desert, forest, and cave), the game combines platforming with music-based puzzles, requiring players to collect notes in the correct sequence while avoiding obstacles and enemies.
+
 Featuring engaging gameplay mechanics, sprite animations, parallax scrolling, and collision detection, WoofWander blends storytelling with interactive design to deliver an emotional and immersive gaming experience centered on loyalty and perseverance.
