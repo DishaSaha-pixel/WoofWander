@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="help.css">
+    <title>WoofWander</title>
+        <link rel="shortcut icon" href="title_image.jpg"/>
+</head>
+<body>
+    <div class="container">
+        <h1>A guide for the melodic quest!</h1>
+        <h2 class="icon-section-heading">Correct tunes!</h2>
+        <div class="tunes">
+            <img src="t1.png" alt="Tune 1">
+            <img src="t2.png" alt="Tune 2">
+            <img src="t3.png" alt="Tune 3">
+            <img src="t4.png" alt="Tune 4">
+            <img src="t5.png" alt="Tune 5">
+            <img src="t6.png" alt="Tune 6">
+            
+        </div>
+
+        <h2 class="icon-section-heading">Broken tunes!</h2>
+        <div class="tunes broken-tunes">
+            <img src="broken_t1.png" alt="Tune 9">
+            <img src="broken_t2.png" alt="Tune 10">
+        </div>
+
+        <h1>Click to know the icons below</h1>
+        <div class="tunes">
+            <div class="icon" onclick="showInstructions('icon1')">
+                <img src="doggo.png" alt="Icon 1">
+            </div>
+            <div class="icon" onclick="showInstructions('icon3')">
+                <img src="right.png" alt="Icon 3">
+            </div>
+            <div class="icon" onclick="showInstructions('icon4')">
+                <img src="up.png" alt="Icon 4">
+            </div>
+            <div class="icon" onclick="showInstructions('icon5')">
+                <img src="down.png" alt="Icon 5">
+            </div>
+            <!--
+            <div class="icon" onclick="showInstructions('icon6')">
+                <img src="space.png" alt="Icon 6">
+            </div>
+            -->
+            <div class="icon" onclick="showInstructions('icon7')">
+                <img src="magic_berry1.png" alt="Icon 7">
+            </div>
+            <div class="icon" onclick="showInstructions('icon8')">
+                <img src="bone.png" alt="Icon 8">
+            </div>
+        </div>
+        
+        <div id="icon1Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon1')">&times;</span>
+            <h2>Game Character Buddy</h2>
+        </div>
+    
+        <div id="icon3Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon3')">&times;</span>
+            <h2>Move forward</h2>
+        </div>
+        <div id="icon4Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon4')">&times;</span>
+            <h2>Jump</h2>
+        </div>
+        <div id="icon5Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon5')">&times;</span>
+            <h2>Stand</h2>
+        </div>
+        <!-- 
+        <div id="icon6Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon6')">&times;</span>
+            <h2>Pause game</h2>
+        </div>
+        -->
+        <div id="icon7Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon7')">&times;</span>
+            <h2>Life booster</h2>
+        </div>
+        <div id="icon8Instructions" class="popup">
+            <span class="close" onclick="hideInstructions('icon8')">&times;</span>
+            <h2>Life booster</h2>
+        </div>
+
+        <h2 class="instructions">INSTRUCTION:  Collect the notes as shown in the sequence before each level</h2>
+    </div>
+    <script src="help.js"></script>
+</body>
+</html>

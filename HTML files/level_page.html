@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WoofWander</title>
+    <link rel="shortcut icon" href="title_image.jpg"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('levelbg.avif') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            position: relative;
+        }
+
+        .level-container {
+            display: flex;
+            margin: 0px 100px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            width: 200px;
+            height: 400px;
+        }
+
+        .level-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .level {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 8px;
+            width: 320px;
+            height: 400px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            overflow: hidden;
+            border: 2px solid #120202fe;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .level img {
+            max-width: 200%;
+            max-height: 200%;
+            object-fit: cover;
+        }
+
+        .level:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+
+        .locked {
+            background-color: gray;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 22px;
+        }
+
+        .home-button img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .level-text {
+            background-color: yellow;
+            color: black;
+            text-align: center;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 28px;
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+
+        .locked:hover .locked-icon {
+            display: block;
+        }
+
+        .locked-icon {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px; /* Adjust the size of the icon as needed */
+            height: 250px; /* Adjust the size of the icon as needed */
+            background-image: url('lock.png'); /* Replace with your locked icon image path */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="home_page.html" class="home-button">
+        <img src="homebutton.png" alt="Home">
+    </a>
+   
+    <div class="level-container">
+        <a href="Story1.html" class="level" id="level1">
+            <img src="desert.jpg" alt="Level 1">
+        </a>
+        <div class="level-text">Level 1</div>
+    </div>
+
+    <div class="level-container">
+        <div class="level locked" id="level2">
+            <div class="locked-icon"></div>
+            <img src="forest.jpg" alt="Level 2">
+        </div>
+        <div class="level-text">Level 2</div>
+    </div>
+
+    <div class="level-container">
+        <div class="level locked" id="level3">
+            <div class="locked-icon"></div>
+            <img src="cave.jpg" alt="Level 3">
+        </div>
+        <div class="level-text">Level 3</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if Level 1 is completed
+            const level1Completed = localStorage.getItem('level1Completed');
+            const level2 = document.getElementById('level2');
+    
+            if (level1Completed === 'true') {
+                // Level 1 is completed, unlock Level 2
+                if (level2) {
+                    level2.classList.remove('locked');
+                    level2.addEventListener('click', function() {
+                        window.location.href = 'Story2.html'; // Link to Level 2 page
+                    });
+                }
+            } else {
+                // Level 1 is not completed, lock Level 2
+                if (level2) {
+                    level2.classList.add('locked');
+                    /*level2.removeEventListener('click', function() {
+                        window.location.href = 'level_2.html'; // Remove the click event listener
+                    });*/
+                }
+            }
+            const level2Completed = localStorage.getItem('level2Completed');
+            const level3 = document.getElementById('level3');
+    
+            if (level2Completed === 'true') {
+                // Level 2 is completed, unlock Level 3
+                if (level3) {
+                    level3.classList.remove('locked');
+                    level3.addEventListener('click', function() {
+                        window.location.href = 'Story3.html'; // Link to Level 3 page
+                    });
+                }
+            } else {
+                // Level 2 is not completed, lock Level 2
+                if (level3) {
+                    level3.classList.add('locked');
+                   /* level3.removeEventListener('click', function() {
+                        window.location.href = 'level_2.html'; // Remove the click event listener
+                    });*/
+                }
+            }
+
+        });
+    </script>
+    
+</body>
+</html>

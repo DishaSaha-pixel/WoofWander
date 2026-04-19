@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Website HTML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="title_image.jpg"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background-image: url('bg20.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #229ed9;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0; /* Reduced margin to decrease space */
+    }
+
+    .btn {
+      margin: 0px 20px;
+      color: white;
+      background: linear-gradient(97deg, rgba(108,203,255,1) 0%, rgba(0,148,255,1) 100%);
+      width: 210px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      border-radius: 14px;
+      text-shadow: 2px 2px 3px rgba(0,0,0,0.13);
+      font-family: 'Sigmar One', cursive;
+      box-shadow: rgb(79,148,238) 0px 1px, rgb(15,82,144) 0px 2px, rgb(15,82,144) 0px 3px,
+                  rgb(15,82,144) 0px 4px, rgb(15,82,144) 0px 5px, rgb(15,82,144) 0px 6px,
+                  rgb(15,82,144) 0px 7px, rgb(15,82,144) 0px 8px, rgb(15,82,144) 0px 9px,
+                  rgb(15,82,144) 0px 10px, rgb(15,82,144) 0px 11px;
+      transform: translate3d(8px, -8px, 0);
+      position: relative;
+    }
+
+    .btn:hover {
+      background: linear-gradient(97deg, rgba(255,209,64,1) 0%, rgba(255,177,1,1) 100%);
+      box-shadow: #e3a700 0px 1px, #e3a700 0px 2px, #e3a700 0px 3px, #e3a700 0px 4px,
+                  #e3a700 0px 5px, #e3a700 0px 6px, #e3a700 0px 7px, #e3a700 0px 8px,
+                  #e3a700 0px 9px, #e3a700 0px 10px, #e3a700 0px 11px;
+    }
+
+    .main-logo {
+      margin: 0px auto;
+      max-width: 40%;
+      margin-bottom: 10px; /* Reduced margin to decrease space */
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-logo">
+    <img src="logo1.png" alt="Game Logo" id="logo">
+  </div>  
+  <section id="buttons">
+    <button class="btn" id="help">Help</button>
+    <button class="btn" id="playGameBtn">Play Game</button>
+    <button class="btn" id="storylineBtn">Storyline</button>
+    
+  </section>
+
+  <script>
+    document.getElementById('playGameBtn').addEventListener('click', function() {
+      window.location.href = 'level_page.html'; 
+    });
+    document.getElementById('storylineBtn').addEventListener('click', function() {
+    window.location.href = 'StoryFull.html'; 
+  });
+  document.getElementById('help').addEventListener('click', function() {
+    window.location.href = 'help1.html'; 
+  });
+
+  </script>
+</body>
+</html>

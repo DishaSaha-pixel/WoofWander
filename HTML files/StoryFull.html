@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WoofWander</title>
+    <!--Google Fonts and Icons-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Foldit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+       
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      .center {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .book {
+        width: 600px;
+        height: 400px;
+        position: relative;
+        right:-135px;
+      }
+      .pages {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .page {
+        width: 580px;
+        height: 370px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 7mm;
+        margin: 0 6px;
+        transform-style: preserve-3d;
+        transform-origin: left;
+        transition: 0.25s;
+        box-shadow: 1px 2px 0 0 rgba(0, 0, 0, 0.15),
+          1px 3px 1px 0 rgba(0, 0, 0, 0.1);
+      }
+      .page-side {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 20px 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        font-family: poppins;
+        border-radius: 7mm;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+      }
+      .home-button {
+            position: absolute;
+            top: 15px;
+            right: 8px;
+        }
+
+        .home-button img {
+            width: 100px;
+            height: 100px;
+        }
+      
+      .page-content {
+        text-align: center;
+        flex-grow: 1;
+        font-size: 25px;
+        display: flex;
+        align-items: center;
+      }
+      .page-footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .pg-no {
+        width: 14px;
+        padding: 0 15px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: rgb(40, 40, 40);
+        background: white;
+        border-radius: 3mm;
+      }
+      .front {
+        background: rgb(252, 214, 88);
+        color: rgb(40, 40, 40);
+        padding-left: 40px;
+      }
+      .back {
+        background: rgb(40, 40, 40);
+        color: white;
+        padding-right: 40px;
+        transform: rotateY(180deg);
+      }
+      .beads {
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 370px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        z-index: 9999;
+      }
+      .bead {
+        width: 36px;
+        height: 12px;
+        background: white;
+        border-radius: 5mm;
+        z-index: 9999;
+        box-shadow: inset 1px 2px 0 0 rgba(0, 0, 0, 0.15),
+          inset 1px 3px 1px 0 rgba(0, 0, 0, 0.1);
+      }
+      .controls {
+  width: 100%;
+  position: absolute;
+  bottom: 120px; /* Adjusted to place the buttons below the book */
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none; /* Ensure that the buttons are clickable */
+}
+
+.controls button {
+  background: rgb(241, 238, 238);
+  width: 40px;
+  height: 40px;
+  border: 0.4mm solid rgb(11, 11, 11);
+  border-radius: 50%;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all; /* Ensure that the buttons are clickable */
+}
+
+.controls .btn:first-of-type {
+  margin-left: 600px; /* Move the arrow back button to the right */
+}
+
+.controls .btn:last-of-type {
+  margin-right: 320px; /* Move the arrow forward button to the left */
+}
+
+      #homeBtn {
+        position: fixed;;
+        top: 45%;
+  left: 40%;
+        transform: translateX(50%);
+        background-color: #bcbf21; /* Green background */
+        color: white; /* White text */
+        border: none; /* Remove borders */
+        padding: 10px 20px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 16px; /* Increase font size */
+      }
+      .home-button {
+      position: absolute;
+      top: 20px;
+      right: 22px; /* Position the button to the top-right corner */
+     
+    }
+    .home-button img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+  </head>
+  
+    <body style="background: url('levelbg.avif') no-repeat center center fixed; background-size: cover;">
+    <a href="home_page.html" class="home-button">
+      <img src="homebutton.png" alt="Home">
+  </a>
+    <div class="center">
+      <div class="book">
+        <div class="pages">
+          <div class="beads">
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+          </div>
+
+          <div class="page active">
+            <!--  page 1 right-->
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="logo1.png" width="500" height="300">
+              </div>
+            </div>
+            <!--page 2 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                In the quaint town of Willow Creek, nestled amidst 
+                rolling hills and lush greenery, there lived a dog named Buddy. 
+                He was the cherished companion of an elderly man named Mr. Thompson, 
+                a retired musician known throughout the town for his 
+                talent with various musical instruments.
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">1</span>
+              </div>
+            </div>
+          </div>
+          <!--page 3 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="1.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 4 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                However, one fateful afternoon, tragedy struck. Mr. Thompson went for a walk and failed to return home. Worried sick, Buddy whined and paced around the house, sensing that something was amiss. As time passed and Mr. Thompson was nowhere to be found, Buddy's anxiety grew.
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">3</span>
+              </div>
+            </div>
+          </div>
+          <!--page 5 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="2.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 6 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                Buddy's acute ears caught a faint sound carried on the wind—a gentle melody, a tune that he recognized as one of Mr. Thompson's compositions. Without hesitation, Buddy's instincts kicked in. With his heart pounding and determination in his eyes, he set off, following the trail of music notes that seemed to lead him deeper into the unknown.
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">5</span>
+              </div>
+            </div>
+          </div>
+          <!--page 7 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="3.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 8 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                Buddy pressed on, guided solely by the hauntingly beautiful melody that resonated through the desert guiding him towards the forest. The forest was filled with danger and uncertainty, but Buddy's loyalty to his beloved owner fueled his determination.
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">7</span>
+              </div>
+            </div>
+          </div>
+          <!--page 9 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="4.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 10 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                Amidst the thick forest, Buddy stumbled upon a cave. Melody echoing through the darkness. With determination and hope, he leaped in.
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">9</span>
+              </div>
+            </div>
+          </div>
+          <!--page 11 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="5.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 12 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                Finally, after what felt like an eternity of crossing various hurdles and writing untold stories of his adventures, Buddy beheld the sight of Mr Thompson, sitting at a corner, exhausted and disoriented but unharmed. He had lost his way but had continued to play his music, hoping that Buddy would follow the sound.              
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">11</span>
+              </div>
+            </div>
+          </div>
+          <!--page 13 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="6.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 14 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                From that day forward, whenever Mr. Thompson played his music, Buddy would listen intently, his eyes reflecting the unwavering devotion he felt for his beloved companion. For in the symphony of life, love is the sweetest melody of all.  
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">13</span>
+              </div>
+            </div>
+          </div>
+          <!--page 15 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <img src="7.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+              </div>
+            </div>
+            <!--page 16 left-->
+            <div class="page-side back">
+              <div class="page-content">
+                <img src="theend.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">            </div>
+              </div>
+              <div class="page-footer">
+                <span class="pg-no">15</span>
+              </div>
+            </div>
+          
+          <!--page 17 right-->
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-content">
+                <button id="homeBtn">Home</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button type="button" class="btn" onclick="previous()">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <button type="button" class="btn" onclick="next()">
+          <span class="material-icons-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function setIndex() {
+        let pages = document.querySelectorAll(".page");
+        for (var i = 0; i < pages.length; i++) {
+          pages[i].style.zIndex = pages.length - i;
+        }
+      }
+
+      setIndex();
+
+      function previous() {
+          let active = document.querySelector(".active");
+          let prevSib = active.previousElementSibling;
+          if (prevSib && prevSib.className === "page") {
+            active.className = "page";
+            prevSib.className = "page active";
+            setIndex();
+            prevSib.style.transform = "rotateY(0deg)";
+            let prevSib2 = prevSib.previousElementSibling;
+            if (prevSib2 && prevSib2.className == "page") {
+              prevSib2.style.zIndex = "9998";
+            }
+          }
+        }
+
+      function next() {
+          let active = document.querySelector(".active");
+          let nextSib = active.nextElementSibling;
+          if (nextSib) {
+            active.style.transform = "rotateY(180deg)";
+            active.className = "page";
+            setIndex();
+            active.style.zIndex = "9998";
+            nextSib.className = "page active";
+          }
+        }
+      document.getElementById('homeBtn').addEventListener('click', function() {
+        window.location.href = 'home_page.html'; // Change this to the actual path of your home page
+      });
+    </script>
+  </body>
+</html>

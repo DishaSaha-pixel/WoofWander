@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WoofWander</title>
+        <link rel="shortcut icon" href="title_image.jpg"/>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-image: url('levelbg.avif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 15px;
+            right: 8px;
+        }
+
+        .home-button img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .content {
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        .content h1 {
+            color: rgb(233, 230, 21);
+            font-size: 60px;
+        }
+
+        #buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .buttons {
+            margin: 0px 20px;
+            color: white;
+            background: linear-gradient(97deg, rgba(108, 203, 255, 1) 0%, hwb(205 0% 0%) 100%);
+            width: 180px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border-radius: 14px;
+            font-family: 'Sigmar One', cursive;
+            box-shadow: rgb(79, 148, 238) 0px 1px, rgb(15, 82, 144) 0px 2px, rgb(15, 82, 144) 0px 3px,
+                rgb(15, 82, 144) 0px 4px, rgb(15, 82, 144) 0px 5px, rgb(15, 82, 144) 0px 6px,
+                rgb(15, 82, 144) 0px 7px, rgb(15, 82, 144) 0px 8px, rgb(15, 82, 144) 0px 9px,
+                rgb(15, 82, 144) 0px 10px, rgb(15, 82, 144) 0px 11px;
+            transform: translate3d(8px, -8px, 0);
+            position: relative;
+        }
+
+        .buttons:hover {
+            background: linear-gradient(97deg, rgba(255, 209, 64, 1) 0%, rgba(255, 177, 1, 1) 100%);
+            box-shadow: #e3a700 0px 1px, #e3a700 0px 2px, #e3a700 0px 3px, #e3a700 0px 4px, #e3a700 0px 5px,
+                #e3a700 0px 6px, #e3a700 0px 7px, #e3a700 0px 8px, #e3a700 0px 9px, #e3a700 0px 10px, #e3a700 0px 11px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .popup img {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .instructions-box {
+            background-color: rgb(199, 199, 49);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 20px auto;
+            width: 46%;
+            font-size: 0.5 rem;
+            line-height: 1.4;
+            max-width: 800px;
+            border: 2px solid black;
+            box-shadow: 0px 0px 10px black;
+            font-family: 'Poetsen One', sans-serif;
+            color: rgb(87, 5, 5);
+        }
+
+        .instructions-box h2 {
+            margin-top: 0;
+            font-size: 1.7rem; /* Changed font size for heading */
+            font-family: 'Creepster', cursive; /* Changed font style for heading */
+            color: black;
+        }
+
+        .instructions-box ul {
+            font-family: "Creepster", system-ui;
+            padding-left: 20px;
+            margin: 5px 1;
+        }
+
+        .instructions-box li {
+            margin-bottom: 3px;
+            font-family: 'Press Start 2P', cursive;
+            color: rgb(87, 5, 5);
+        }
+
+    </style>
+</head>
+
+<body>
+    <a href="home_page.html" class="home-button">
+        <img src="homebutton.png" alt="Home">
+    </a>
+    <div class="content">
+        <h1>LEVEL 1</h1>
+        <p id="demo"></p>
+    </div>
+    <div id="buttons">
+        <button class="buttons" onclick="showPopup()">VIEW SEQUENCE</button>
+        <button class="buttons">START LEVEL</button>
+    </div>
+
+    <div id="popup" class="popup">
+        <span class="close" onclick="hidePopup()">&times;</span>
+        <div>
+            <img src="t1.png" alt="Tune 1">
+            <img src="t2.png" alt="Tune 2">
+            <img src="t3.png" alt="Tune 3">
+            <img src="t4.png" alt="Tune 4">
+        </div>
+    </div>
+
+    <div class="instructions-box">
+        <h2>INSTRUCTIONS:</h2>
+        <ul>
+            <li>Beware of cactus-dreadful encounter!</li>
+            <li>Time's ticking! gear up for the quest!</li>
+        </ul>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        document.querySelector('.buttons:last-of-type').addEventListener('click', function() 
+        {
+            window.location.href = 'Final.html';
+        });
+    </script>
+</body>
+
+</html>

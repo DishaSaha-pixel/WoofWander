@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>WoofWander</title>
+        <link rel="shortcut icon" href="title_image.jpg"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('bg20.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a slight overlay for better text visibility */
+        }
+      
+        .percentage {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: bold;
+            color: #f3f304;
+        }
+
+        .btn-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 350px; /* Adjust the width of the button container as needed */
+        }
+
+        .btn-restart,
+        .btn-home {
+            background-color: #c3c01b;
+            border: none;
+            color: rgb(8, 4, 4);
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-restart:hover,
+        .btn-home:hover {
+            background-color: #e8646475;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: -5px; /* Space between logo and text */
+        }
+        .logo-border {
+            border: 10px solid black; /* Adjust border width and color as needed */
+            border-radius: 5px; /* Adjust border radius as needed */
+            position: relative;  padding: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="logo-border">
+        <img src="try_again.jpg" alt="Game Logo" id="logoImage"> <!-- Add your logo image here -->
+        <p class="percentage">Percentage Matched: <span id="percentMatch" aria-live="polite"></span>%</p>
+        <div class="btn-container">
+            <button class="btn-home" onclick="goHome()">HOME</button>
+            <button class="btn-restart" onclick="restartGame()">TRY AGAIN!</button>
+        </div>
+    </div>
+
+    <audio id="loseSound" src="lose.mp3" aria-label="Game over sound"></audio>
+    
+    <script>
+        function restartGame() {
+            window.location.href = 'level_2.html'; // Redirect to the level 2 page
+        }
+
+        function goHome() {
+            window.location.href = 'home_page.html'; // Redirect to the home page
+        }
+
+        // Function to extract URL parameters
+        function getUrlParameter(name) {
+            const regex = new RegExp(`[?&]${name}=([^&#]*)`);
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Display the percentage matched on the page
+        const percentMatch = getUrlParameter('percentMatch');
+        if (percentMatch) {
+            document.getElementById('percentMatch').innerText = percentMatch;
+        } else {
+            document.getElementById('percentMatch').innerText = '0'; // Default to 0% if parameter is missing
+        }
+
+        // Function to play the lose sound
+        function playLoseSound() {
+            const loseSound = document.getElementById('loseSound');
+            loseSound.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        // Call the function to play the sound when the page loads
+        window.onload = function() {
+            playLoseSound();
+        };
+    </script>
+</body>
+</html>

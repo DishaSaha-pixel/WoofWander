@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WoofWander</title>
+    <!--Google Fonts and Icons-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Foldit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+      }
+      .center {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .book {
+        width: 600px;
+        height: 400px;
+        position: relative;
+        right: -135px;
+      }
+      .pages {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .page {
+        width: 580px;
+        height: 370px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 7mm;
+        margin: 0 6px;
+        transform-style: preserve-3d;
+        transform-origin: left;
+        transition: 0.25s;
+        box-shadow: 1px 2px 0 0 rgba(0, 0, 0, 0.15),
+          1px 3px 1px 0 rgba(0, 0, 0, 0.1);
+      }
+      .page-side {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 20px 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        font-family: poppins;
+        border-radius: 7mm;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+      }
+      
+      .page-content {
+        flex-grow: 1;
+        font-size: 25px;
+        display: flex;
+        align-items: center;
+      }
+      .page-footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .pg-no {
+        width: 14px;
+        padding: 0 15px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: rgb(40, 40, 40);
+        background: white;
+        border-radius: 3mm;
+      }
+      .front {
+        background: rgb(252, 214, 88);
+        color: rgb(40, 40, 40);
+        padding-left: 40px;
+        
+      }
+      .back {
+        background: rgb(40, 40, 40);
+        color: white;
+        padding-right: 40px;
+        transform: rotateY(180deg);
+      }
+      .beads {
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 370px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        z-index: 9999;
+      }
+      .bead {
+        width: 36px;
+        height: 12px;
+        background: white;
+        border-radius: 5mm;
+        z-index: 9999;
+        box-shadow: inset 1px 2px 0 0 rgba(0, 0, 0, 0.15),
+          inset 1px 3px 1px 0 rgba(0, 0, 0, 0.1);
+      }
+     
+      #level-btn {
+  background-color: #b2a10a; /* Light purple */
+  color: rgb(6, 5, 6); /* Pink */
+  border: none;
+  width: 170px;
+  height: 50px;
+  text-align: center; /* Add this to center the text horizontally */
+  display: flex; /* Use flexbox to center vertically and horizontally */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border-radius: 16mm; /* Adjusted border-radius for a rounded appearance */
+  font-size: 25px; /* Increased font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.level-btn:hover {
+  background-color: #310855; /* Darker purple on hover */
+}
+.button {
+  position: fixed;
+  padding: 10px 20px;
+  background-color: #bed20794; /* Semi-transparent white background */
+  color: black; /* Adjust text color as needed */
+  border: none;
+  border-radius: 15px;
+  border: 2px solid #000; /* Add border */
+  cursor: pointer;
+  font-size: 20px; /* Increased font size */
+  text-decoration: none; /* Remove default underline for links */
+}
+.button.button-right {
+  right: 20px; /* Adjust distance from right */
+}
+
+.button.button-bottom {
+  bottom: 20px; /* Adjust distance from bottom */
+}
+
+     
+        .controls {
+  width: 100%;
+  position: absolute;
+  bottom: 120px; /* Adjusted to place the buttons below the book */
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none; /* Ensure that the buttons are clickable */
+}
+.home-button {
+      position: absolute;
+      top: 20px;
+      right: 22px; /* Position the button to the top-right corner */
+     
+    }
+    .home-button img {
+            width: 100px;
+            height: 100px;
+        }
+
+.controls button {
+  background: rgb(241, 238, 238);
+  width: 40px;
+  height: 40px;
+  border: 0.4mm solid rgb(11, 11, 11);
+  border-radius: 50%;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all; /* Ensure that the buttons are clickable */
+}
+
+.controls .btn:first-of-type {
+  margin-left: 600px; /* Move the arrow back button to the right */
+}
+
+.controls .btn:last-of-type {
+  margin-right: 320px; /* Move the arrow forward button to the left */
+}
+    </style>
+  </head>
+  <body style="background: url('levelbg.avif') no-repeat center center fixed; background-size: cover;">
+    <a href="home_page.html" class="home-button">
+      <img src="homebutton.png" alt="Home">
+  </a>
+    <div class="center">
+      <div class="book">
+        <div class="pages">
+          <div class="beads">
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+          </div>
+
+          <div class="page active">
+
+
+<!--  page 1 right-->
+            <div class="page-side front">
+             
+              <div class="page-content">
+                <img src="reunion.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">            </div>
+            
+            </div>
+<!--page 2 left-->
+            <div class="page-side back">
+              
+              <div class="page-content">
+                Finally, after what felt like an eternity of crossing various hurdles and writing untold stories of his adventures, Buddy beheld the sight of Mr Thompson, sitting at a corner, exhausted and disoriented but unharmed. He had lost his way but had continued to play his music, hoping that Buddy would follow the sound.              </div>
+              
+            </div>
+          </div>
+<!--page 3 right-->
+          <div class="page">
+            <div class="page-side front">
+            
+              <div class="page-content">
+                <img src="6.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+
+              </div>
+            
+            </div>
+<!--page 4 left-->
+<div class="page-side back">
+              
+    <div class="page-content">
+        From that day forward, whenever Mr. Thompson played his music, Buddy would listen intently, his eyes reflecting the unwavering devotion he felt for his beloved companion. For in the symphony of life, love is the sweetest melody of all.  
+        </div>
+  </div>
+</div>
+<!--page 5 right-->
+<div class="page">
+  <div class="page-side front">
+  
+    <div class="page-content">
+      <img src="7.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+
+    </div>
+  
+  </div>
+
+<!--page 8 left-->
+          <div class="page-side back">
+              
+            <div class="page-content">
+              <img src="theend.png" width="580" height="330" style="max-width: 100%; border: 1px solid #000; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">            </div>
+            
+          </div>
+        </div>
+<!--page 9 right-->
+
+        <div class="page">
+          <div class="page-side front">
+           
+            <div class="page-content">
+              <button id="level-btn">CONTINUE
+              </button> 
+
+            </div>
+           
+          </div>
+</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button type="button" class="btn" onclick="previous()">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <button type="button" class="btn" onclick="next()">
+          <span class="material-icons-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <script>
+      function setIndex() {
+        let pages = document.querySelectorAll(".page");
+        for (var i = 0; i < pages.length; i++) {
+          pages[i].style.zIndex = pages.length - i;
+        }
+      }
+
+      setIndex();
+
+      function previous() {
+          let active = document.querySelector(".active");
+          let prevSib = active.previousElementSibling;
+          if (prevSib && prevSib.className === "page") {
+            active.className = "page";
+            prevSib.className = "page active";
+            setIndex();
+            prevSib.style.transform = "rotateY(0deg)";
+            let prevSib2 = prevSib.previousElementSibling;
+            if (prevSib2 && prevSib2.className == "page") {
+              prevSib2.style.zIndex = "9998";
+            }
+          }
+        }
+
+      function next() {
+          let active = document.querySelector(".active");
+          let nextSib = active.nextElementSibling;
+          if (nextSib) {
+            active.style.transform = "rotateY(180deg)";
+            active.className = "page";
+            setIndex();
+            active.style.zIndex = "9998";
+            nextSib.className = "page active";
+          }
+        }
+    </script>
+    
+  </body>
+</html>
